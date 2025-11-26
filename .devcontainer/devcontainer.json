@@ -1,0 +1,23 @@
+{
+    "name": "Python with uv",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ],
+            "settings": {
+                "python.testing.pytestArgs": ["tests"],
+                "python.testing.unittestEnabled": false,
+                "python.testing.pytestEnabled": true,
+                "python.defaultInterpreterPath": ".venv/bin/python",
+                "git.confirmSync": false,
+                "git.postCommitCommand": "sync",
+                "git.autofetch": true,
+                "git.useEditorAsCommitInput": false,
+                "git.rebaseWhenSync": true
+            }
+        }
+    },
+    "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+    "postStartCommand": "uv sync"
+}

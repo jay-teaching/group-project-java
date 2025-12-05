@@ -33,7 +33,7 @@ def _():
 
     SAVE_MODEL = False
 
-    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes"]
+    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "InternetService_fiber optic","InternetService_no", "Contract_one year","Contract_two year", "DeviceProtection_no internet service"]
     TEST_SIZE = 0.20
     C_VALUE = 1.0
     MAX_ITER = 1000
@@ -83,7 +83,6 @@ def _(SELECTED_FEATURES):
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
         return cleaned, X_scaled, y, scaler, X.columns.tolist()
-
     return (preprocess_telco,)
 
 

@@ -33,6 +33,14 @@ def _(mo):
 
 @app.cell
 def _():
+    DATA_PATH = "data/telco_churn.csv"
+    MAX_ITER = 1000
+    MODEL_SAVE_PATH = "models/logistic_model.pkl"
+    SAVE_MODEL = True
+    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TotalCharges"]
+    SOLVER = "lbfgs"
+    TEST_SIZE = 0.2
+    C_VALUE = 1.0
     return (
         DATA_PATH,
         MAX_ITER,

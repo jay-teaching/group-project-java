@@ -32,19 +32,6 @@ def _(mo):
 
 
 @app.cell
-def _(Path):
-    DATA_PATH = Path("input/WA_Fn-UseC_-Telco-Customer-Churn.csv")
-    MODEL_SAVE_PATH = Path("models/telco_logistic_regression.joblib")
-
-    SAVE_MODEL = True
-
-    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "Contract_one year","Contract_two year", "TotalCharges","Partner_yes", "StreamingTV_yes", "StreamingTV_no internet service"] 
-    TEST_SIZE = 0.20
-    C_VALUE = 1.0
-    MAX_ITER = 1000
-    SOLVER = "liblinear"
-    return (
-        C_VALUE,
         DATA_PATH,
         MAX_ITER,
         MODEL_SAVE_PATH,

@@ -28,27 +28,6 @@ def load_model():
         data = joblib.load(MODEL_PATH)
         model = data["model"]
         scaler = data["scaler"]
-        print("Model loaded successfully")
-    except FileNotFoundError:
-        print(f"Warning: Model file not found at {MODEL_PATH}")
-
-# Feature names must match the training features
-FEATURE_NAMES = [
-    "tenure",
-    "MonthlyCharges",
-    "TechSupport_yes",
-    "Contract_one year",
-    "Contract_two year",
-    "TotalCharges",
-    "Partner_yes",
-    "StreamingTV_yes",
-    "StreamingTV_no internet service"
-]
-
-class PredictionInput(BaseModel):
-    tenure: float
-    MonthlyCharges: float
-    TechSupport_yes: int  # 0 or 1
     Contract_one_year: int  # 0 or 1
     Contract_two_year: int  # 0 or 1
     TotalCharges: float

@@ -13,6 +13,7 @@ dependencies = [
     "streamlit>=1.40.2",
     "requests>=2.32.3",
     "uvicorn>=0.34.0",
+    "azure-functions>=1.21.3",
 ]
 
 [dependency-groups]

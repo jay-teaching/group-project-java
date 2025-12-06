@@ -32,6 +32,8 @@ def _(mo):
 
 
 @app.cell
+def _():
+    return (
         DATA_PATH,
         MAX_ITER,
         MODEL_SAVE_PATH,
@@ -39,6 +41,7 @@ def _(mo):
         SELECTED_FEATURES,
         SOLVER,
         TEST_SIZE,
+        C_VALUE,
     )
 
 

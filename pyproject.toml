@@ -10,6 +10,9 @@ dependencies = [
     "marimo>=0.17.8",
     "pandas>=2.3.3",
     "scikit-learn>=1.7.2",
+    "streamlit>=1.40.2",
+    "requests>=2.32.3",
+    "uvicorn>=0.34.0",
 ]
 
 [dependency-groups]

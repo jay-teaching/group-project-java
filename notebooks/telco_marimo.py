@@ -12,7 +12,6 @@ app._unparsable_cell(
     import marimo as mo
     import pandas as pd
     from sklearn.linear_model import LogisticRegression
-    from sklearn.
     from sklearn.metrics import (accuracy_score, classification_report,
                                  confusion_matrix, f1_score, roc_auc_score)
     from sklearn.model_selection import train_test_split
@@ -37,7 +36,7 @@ def _(Path):
     DATA_PATH = Path("input/WA_Fn-UseC_-Telco-Customer-Churn.csv")
     MODEL_SAVE_PATH = Path("models/telco_logistic_regression.joblib")
 
-    SAVE_MODEL = False
+    SAVE_MODEL = True
 
     SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "Contract_one year","Contract_two year", "TotalCharges","Partner_yes", "StreamingTV_yes", "StreamingTV_no internet service"] 
     TEST_SIZE = 0.20

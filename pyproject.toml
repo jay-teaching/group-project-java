@@ -5,6 +5,7 @@ description = "Predicting churn in a telco"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.123.10",
     "joblib>=1.5.2",
     "marimo>=0.17.8",
     "pandas>=2.3.3",

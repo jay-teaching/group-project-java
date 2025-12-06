@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.venv/
+venv/
+.uv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Testing
+coverage/
+.pytest_cache/
+
+# Misc
+*.log
+.env
+.env.local
+
+# Project specific - exclude from Docker build
+notebooks/
+tests/
+.github/
+*.md
+!README.md

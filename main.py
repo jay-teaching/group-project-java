@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
@@ -9,7 +9,7 @@ app = FastAPI(title="Telco Churn Prediction API")
 
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
-    CORSMiddleware,
+    CORSMiddleware,  # type: ignore[arg-type]
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
@@ -81,7 +81,7 @@ def health_check():
 @app.post("/predict")
 def predict(input_data: PredictionInput) -> PredictionOutput:
     if model is None or scaler is None:
-        return {"error": "Model not loaded"}
+        raise HTTPException(status_code=503, detail="Model not loaded")
     
     # Prepare features in correct order
     features = np.array([

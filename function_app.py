@@ -36,6 +36,8 @@ def predict(req: func.HttpRequest) -> func.HttpResponse:
             tenure=float(tenure),
             MonthlyCharges=float(monthly_charges),
             TechSupport_yes=int(tech_support),
+            Contract_one_year=int(contract_one_year),
+            Contract_two_year=int(contract_two_year),
             TotalCharges=float(total_charges),
             Partner_yes=int(partner),
             StreamingTV_yes=int(streaming_tv),

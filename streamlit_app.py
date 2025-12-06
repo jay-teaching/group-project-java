@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-import json
 import os
 
 # Page configuration
@@ -162,7 +161,7 @@ with st.sidebar:
             st.success("✅ API Online")
         else:
             st.error("❌ API Error")
-    except:
+    except Exception:
         st.error("❌ API Offline")
     
     st.markdown("---")

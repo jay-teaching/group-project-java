@@ -3,21 +3,27 @@ import marimo
 __generated_with = "0.17.8"
 app = marimo.App(width="medium")
 
-with app.setup:
+
+app._unparsable_cell(
+    r"""
     from pathlib import Path
 
     import joblib
     import marimo as mo
     import pandas as pd
     from sklearn.linear_model import LogisticRegression
+    from sklearn.
     from sklearn.metrics import (accuracy_score, classification_report,
                                  confusion_matrix, f1_score, roc_auc_score)
     from sklearn.model_selection import train_test_split
     from sklearn.preprocessing import StandardScaler
+    """,
+    name="setup"
+)
 
 
 @app.cell(hide_code=True)
-def _():
+def _(mo):
     mo.md("""
     # Telco churn – baseline logistic regression
 
@@ -27,13 +33,13 @@ def _():
 
 
 @app.cell
-def _():
+def _(Path):
     DATA_PATH = Path("input/WA_Fn-UseC_-Telco-Customer-Churn.csv")
     MODEL_SAVE_PATH = Path("models/telco_logistic_regression.joblib")
 
     SAVE_MODEL = False
 
-    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "InternetService_fiber optic","InternetService_no", "Contract_one year","Contract_two year", "DeviceProtection_no internet service"]
+    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "Contract_one year","Contract_two year", "TotalCharges","Partner_yes", "StreamingTV_yes", "StreamingTV_no internet service"] 
     TEST_SIZE = 0.20
     C_VALUE = 1.0
     MAX_ITER = 1000
@@ -51,14 +57,14 @@ def _():
 
 
 @app.cell
-def _(DATA_PATH):
+def _(DATA_PATH, pd):
     telco_df = pd.read_csv(DATA_PATH)
     telco_df.head()
     return (telco_df,)
 
 
 @app.cell
-def _(SELECTED_FEATURES):
+def _(SELECTED_FEATURES, StandardScaler, pd):
     def preprocess_telco(df: pd.DataFrame):
         cleaned = df.copy()
         if "customerID" in cleaned.columns:
@@ -95,7 +101,21 @@ def _(preprocess_telco, telco_df):
 
 
 @app.cell
-def _(C_VALUE, MAX_ITER, SOLVER, TEST_SIZE, X_scaled, y):
+def _(
+    C_VALUE,
+    LogisticRegression,
+    MAX_ITER,
+    SOLVER,
+    TEST_SIZE,
+    X_scaled,
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    f1_score,
+    roc_auc_score,
+    train_test_split,
+    y,
+):
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled,
         y,
@@ -135,7 +155,7 @@ def _(metrics):
 
 
 @app.cell
-def _(MODEL_SAVE_PATH, SAVE_MODEL, model, scaler):
+def _(MODEL_SAVE_PATH, SAVE_MODEL, joblib, model, scaler):
     if SAVE_MODEL:
         joblib.dump({"model": model, "scaler": scaler}, MODEL_SAVE_PATH)
     return

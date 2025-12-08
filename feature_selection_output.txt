@@ -1,0 +1,91 @@
+All available features after One-Hot-Encoding:
+  1. Contract_one year
+  2. Contract_two year
+  3. Dependents_yes
+  4. DeviceProtection_no internet service
+  5. DeviceProtection_yes
+  6. InternetService_fiber optic
+  7. InternetService_no
+  8. MonthlyCharges
+  9. MultipleLines_no phone service
+  10. MultipleLines_yes
+  11. OnlineBackup_no internet service
+  12. OnlineBackup_yes
+  13. OnlineSecurity_no internet service
+  14. OnlineSecurity_yes
+  15. PaperlessBilling_yes
+  16. Partner_yes
+  17. PaymentMethod_credit card (automatic)
+  18. PaymentMethod_electronic check
+  19. PaymentMethod_mailed check
+  20. PhoneService_yes
+  21. SeniorCitizen
+  22. StreamingMovies_no internet service
+  23. StreamingMovies_yes
+  24. StreamingTV_no internet service
+  25. StreamingTV_yes
+  26. TechSupport_no internet service
+  27. TechSupport_yes
+  28. TotalCharges
+  29. gender_male
+  30. tenure
+
+================================================================================
+BASELINE FEATURES (3): ['tenure', 'MonthlyCharges', 'TotalCharges']
+OTHER FEATURES (27): ['Contract_one year', 'Contract_two year', 'Dependents_yes', 'DeviceProtection_no internet service', 'DeviceProtection_yes', 'InternetService_fiber optic', 'InternetService_no', 'MultipleLines_no phone service', 'MultipleLines_yes', 'OnlineBackup_no internet service', 'OnlineBackup_yes', 'OnlineSecurity_no internet service', 'OnlineSecurity_yes', 'PaperlessBilling_yes', 'Partner_yes', 'PaymentMethod_credit card (automatic)', 'PaymentMethod_electronic check', 'PaymentMethod_mailed check', 'PhoneService_yes', 'SeniorCitizen', 'StreamingMovies_no internet service', 'StreamingMovies_yes', 'StreamingTV_no internet service', 'StreamingTV_yes', 'TechSupport_no internet service', 'TechSupport_yes', 'gender_male']
+================================================================================
+
+✓ Baseline: 0.7747
+
+Testing combinations with 1 additional feature(s)...
+  Best accuracy with 1 additional features: 0.7854
+  Features: ['TechSupport_yes']
+
+Testing combinations with 2 additional feature(s)...
+  Best accuracy with 2 additional features: 0.7953
+  Features: ['InternetService_fiber optic', 'PaymentMethod_electronic check']
+
+Testing combinations with 3 additional feature(s)...
+  Best accuracy with 3 additional features: 0.7989
+  Features: ['MultipleLines_no phone service', 'PaymentMethod_electronic check', 'TechSupport_yes']
+
+Testing combinations with 4 additional feature(s)...
+  Best accuracy with 4 additional features: 0.8038
+  Features: ['DeviceProtection_no internet service', 'InternetService_fiber optic', 'PaymentMethod_electronic check', 'TechSupport_yes']
+
+Testing combinations with 5 additional feature(s)...
+  Best accuracy with 5 additional features: 0.8060
+  Features: ['InternetService_fiber optic', 'MultipleLines_no phone service', 'MultipleLines_yes', 'PaymentMethod_electronic check', 'TechSupport_yes']
+
+================================================================================
+TOP 10 FEATURE COMBINATIONS BY ACCURACY:
+================================================================================
+
+                                                                                                                                                               features  num_features  accuracy       f1  roc_auc           description
+[tenure, MonthlyCharges, TotalCharges, InternetService_fiber optic, MultipleLines_no phone service, MultipleLines_yes, PaymentMethod_electronic check, TechSupport_yes]             8  0.805970 0.546256 0.819479 Best with +5 features
+             [tenure, MonthlyCharges, TotalCharges, DeviceProtection_no internet service, InternetService_fiber optic, PaymentMethod_electronic check, TechSupport_yes]             7  0.803838 0.546256 0.819473 Best with +4 features
+                                                [tenure, MonthlyCharges, TotalCharges, MultipleLines_no phone service, PaymentMethod_electronic check, TechSupport_yes]             6  0.798863 0.540936 0.820131 Best with +3 features
+                                                                    [tenure, MonthlyCharges, TotalCharges, InternetService_fiber optic, PaymentMethod_electronic check]             5  0.795309 0.537405 0.817861 Best with +2 features
+                                                                                                                [tenure, MonthlyCharges, TotalCharges, TechSupport_yes]             4  0.785359 0.504673 0.811113 Best with +1 features
+                                                                                                                                 [tenure, MonthlyCharges, TotalCharges]             3  0.774698 0.506998 0.811087 Baseline (3 features)
+
+================================================================================
+✓ COMBINATIONS WITH ACCURACY >= 80%:
+================================================================================
+
+Accuracy: 0.8060 | F1: 0.5463 | ROC-AUC: 0.8195
+Features (8): ['tenure', 'MonthlyCharges', 'TotalCharges', 'InternetService_fiber optic', 'MultipleLines_no phone service', 'MultipleLines_yes', 'PaymentMethod_electronic check', 'TechSupport_yes']
+
+Accuracy: 0.8038 | F1: 0.5463 | ROC-AUC: 0.8195
+Features (7): ['tenure', 'MonthlyCharges', 'TotalCharges', 'DeviceProtection_no internet service', 'InternetService_fiber optic', 'PaymentMethod_electronic check', 'TechSupport_yes']
+
+
+================================================================================
+TRAINING BEST MODEL FOR DEPLOYMENT...
+================================================================================
+
+Final Model Performance:
+  Accuracy:  0.8060
+  F1 Score:  0.5944
+  ROC-AUC:   0.8299
+  Features:  ['tenure', 'MonthlyCharges', 'TotalCharges', 'InternetService_fiber optic', 'MultipleLines_no phone service', 'MultipleLines_yes', 'PaymentMethod_electronic check', 'TechSupport_yes']

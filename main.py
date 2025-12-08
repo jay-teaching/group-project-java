@@ -37,20 +37,20 @@ FEATURE_NAMES = [
     "tenure",
     "MonthlyCharges",
     "TechSupport_yes",
-    "Contract_one_year",
-    "Contract_two_year",
+    "Contract_one year",
+    "Contract_two year",
     "TotalCharges",
     "Partner_yes",
     "StreamingTV_yes",
-    "StreamingTV_no_internet_service"
+    "StreamingTV_no internet service"
 ]
 
 class PredictionInput(BaseModel):
     tenure: float
     MonthlyCharges: float
     TechSupport_yes: int  # 0 or 1
-    Contract_one_year: int  # 0 or 1
-    Contract_two_year: int  # 0 or 1
+    Contract_one_year: int  # 0 or 1 (one year)
+    Contract_two_year: int  # 0 or 1 (two year)
     TotalCharges: float
     Partner_yes: int  # 0 or 1
     StreamingTV_yes: int  # 0 or 1

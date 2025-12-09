@@ -29,7 +29,7 @@ def _():
 def _():
     DATA_PATH = "input/WA_Fn-UseC_-Telco-Customer-Churn.csv"
     MAX_ITER = 1000
-    MODEL_SAVE_PATH = "models/logistic_model.pkl"
+    MODEL_SAVE_PATH = "models/telco_logistic_regression.joblib"
     SAVE_MODEL = True
     SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "Contract_one year","Contract_two year", "TotalCharges","Partner_yes", "StreamingTV_yes", "StreamingTV_no internet service"] 
     SOLVER = "lbfgs"

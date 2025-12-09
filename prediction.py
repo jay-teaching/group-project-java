@@ -14,12 +14,12 @@ FEATURE_ORDER = [
     "tenure",
     "MonthlyCharges",
     "TechSupport_yes",
-    "Contract_one_year",
-    "Contract_two_year",
+    "Contract_one year",
+    "Contract_two year",
     "TotalCharges",
     "Partner_yes",
     "StreamingTV_yes",
-    "StreamingTV_no_internet_service"
+    "StreamingTV_no internet service"
 ]
 
 

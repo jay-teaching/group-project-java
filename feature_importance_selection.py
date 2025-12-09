@@ -196,16 +196,6 @@ print(f"  F1 Score:  {rfe_f1:.4f}")
 print(f"  ROC-AUC:   {rfe_roc_auc:.4f}")
 
 # ============================================================================
-# SAVE FINAL MODEL
-# ============================================================================
-print("\n" + "=" * 80)
-print("SAVING FINAL MODEL")
-print("=" * 80)
-
-joblib.dump({"model": final_model, "scaler": scaler_final}, "models/telco_logistic_regression.joblib")
-print("\n✓ Model saved to models/telco_logistic_regression.joblib")
-
-# ============================================================================
 # GENERATE REPORT
 # ============================================================================
 print("\n" + "=" * 80)

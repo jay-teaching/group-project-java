@@ -17,7 +17,7 @@ def test_make_prediction_simple():
         "TotalCharges": 24.6,
         "Partner_yes": 1,
         "StreamingTV_yes": 0,
-        "StreamingTV_no internet service": 0
+        "StreamingTV_no internet service": 0,
     }
     result = prediction.make_prediction(**features)
     assert isinstance(result, float)

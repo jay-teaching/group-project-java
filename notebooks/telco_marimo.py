@@ -4,13 +4,17 @@ __generated_with = "0.17.8"
 app = marimo.App(width="medium")
 
 with app.setup:
-
     import joblib
     import marimo as mo
     import pandas as pd
     from sklearn.linear_model import LogisticRegression
-    from sklearn.metrics import (accuracy_score, classification_report,
-                                 confusion_matrix, f1_score, roc_auc_score)
+    from sklearn.metrics import (
+        accuracy_score,
+        classification_report,
+        confusion_matrix,
+        f1_score,
+        roc_auc_score,
+    )
     from sklearn.model_selection import train_test_split
     from sklearn.preprocessing import StandardScaler
 
@@ -31,7 +35,17 @@ def _():
     MAX_ITER = 1000
     MODEL_SAVE_PATH = "models/telco_logistic_regression.joblib"
     SAVE_MODEL = True
-    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "Contract_one year","Contract_two year", "TotalCharges","Partner_yes", "StreamingTV_yes", "StreamingTV_no internet service"] 
+    SELECTED_FEATURES = [
+        "tenure",
+        "MonthlyCharges",
+        "TechSupport_yes",
+        "Contract_one year",
+        "Contract_two year",
+        "TotalCharges",
+        "Partner_yes",
+        "StreamingTV_yes",
+        "StreamingTV_no internet service",
+    ]
     SOLVER = "lbfgs"
     TEST_SIZE = 0.2
     C_VALUE = 1.0
@@ -80,6 +94,7 @@ def _(SELECTED_FEATURES):
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
         return cleaned, X_scaled, y, scaler, X.columns.tolist()
+
     return (preprocess_telco,)
 
 
@@ -125,15 +140,17 @@ def _(metrics):
     f1 = metrics["f1"]
     roc = metrics["roc_auc"]
 
-    mo.vstack([
-        mo.md("## Performance Summary"),
-        mo.md(
-            f"""- Accuracy: {acc:.3f}
+    mo.vstack(
+        [
+            mo.md("## Performance Summary"),
+            mo.md(
+                f"""- Accuracy: {acc:.3f}
     - F1 Score: {f1:.3f}
     - ROC AUC: {roc:.3f}
     """
             ),
-        ])
+        ]
+    )
     return
 
 
@@ -147,10 +164,12 @@ def _(metrics):
         columns=["Pred: No churn", "Pred: Churn"],
     )
 
-    mo.vstack([
-        mo.md("## Confusion Matrix"),
-        cm_df,
-    ])
+    mo.vstack(
+        [
+            mo.md("## Confusion Matrix"),
+            cm_df,
+        ]
+    )
     return
 
 

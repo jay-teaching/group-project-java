@@ -4,8 +4,13 @@ from sklearn.model_selection import train_test_split, cross_validate
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import RFE
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, classification_report, confusion_matrix
-import joblib
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    roc_auc_score,
+    classification_report,
+    confusion_matrix,
+)
 from datetime import datetime
 
 # ============================================================================
@@ -46,14 +51,15 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 print("Training Random Forest...")
-rf_model = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1, max_depth=15)
+rf_model = RandomForestClassifier(
+    n_estimators=100, random_state=42, n_jobs=-1, max_depth=15
+)
 rf_model.fit(X_train, y_train)
 
 # Get feature importances
-feature_importance_df = pd.DataFrame({
-    'feature': all_features,
-    'importance': rf_model.feature_importances_
-}).sort_values('importance', ascending=False)
+feature_importance_df = pd.DataFrame(
+    {"feature": all_features, "importance": rf_model.feature_importances_}
+).sort_values("importance", ascending=False)
 
 print(f"\nRandom Forest Accuracy: {rf_model.score(X_test, y_test):.4f}")
 print("\nTop 20 Most Important Features:")
@@ -72,52 +78,50 @@ cv_results = []
 
 for k in k_values:
     print(f"\n--- Testing with Top {k} Features ---")
-    top_k_features = feature_importance_df.head(k)['feature'].tolist()
-    
+    top_k_features = feature_importance_df.head(k)["feature"].tolist()
+
     print(f"Features: {top_k_features}")
-    
+
     X_k = X[top_k_features]
-    
+
     # Standardize
     scaler_k = StandardScaler()
     X_k_scaled = scaler_k.fit_transform(X_k)
-    
+
     # Cross-validation with Logistic Regression
     lr_model = LogisticRegression(solver="lbfgs", max_iter=1000, random_state=42)
-    
+
     # Multiple metrics
-    scoring = {
-        'accuracy': 'accuracy',
-        'f1': 'f1',
-        'roc_auc': 'roc_auc'
-    }
-    
+    scoring = {"accuracy": "accuracy", "f1": "f1", "roc_auc": "roc_auc"}
+
     cv_scores = cross_validate(lr_model, X_k_scaled, y, cv=5, scoring=scoring)
-    
-    mean_accuracy = cv_scores['test_accuracy'].mean()
-    mean_f1 = cv_scores['test_f1'].mean()
-    mean_roc_auc = cv_scores['test_roc_auc'].mean()
-    
-    std_accuracy = cv_scores['test_accuracy'].std()
-    std_f1 = cv_scores['test_f1'].std()
-    std_roc_auc = cv_scores['test_roc_auc'].std()
-    
+
+    mean_accuracy = cv_scores["test_accuracy"].mean()
+    mean_f1 = cv_scores["test_f1"].mean()
+    mean_roc_auc = cv_scores["test_roc_auc"].mean()
+
+    std_accuracy = cv_scores["test_accuracy"].std()
+    std_f1 = cv_scores["test_f1"].std()
+    std_roc_auc = cv_scores["test_roc_auc"].std()
+
     print("Cross-Validation Results (5-fold):")
     print(f"  Accuracy:  {mean_accuracy:.4f} ± {std_accuracy:.4f}")
     print(f"  F1 Score:  {mean_f1:.4f} ± {std_f1:.4f}")
     print(f"  ROC-AUC:   {mean_roc_auc:.4f} ± {std_roc_auc:.4f}")
-    
-    cv_results.append({
-        'k': k,
-        'features': top_k_features,
-        'num_features': k,
-        'accuracy_mean': mean_accuracy,
-        'accuracy_std': std_accuracy,
-        'f1_mean': mean_f1,
-        'f1_std': std_f1,
-        'roc_auc_mean': mean_roc_auc,
-        'roc_auc_std': std_roc_auc
-    })
+
+    cv_results.append(
+        {
+            "k": k,
+            "features": top_k_features,
+            "num_features": k,
+            "accuracy_mean": mean_accuracy,
+            "accuracy_std": std_accuracy,
+            "f1_mean": mean_f1,
+            "f1_std": std_f1,
+            "roc_auc_mean": mean_roc_auc,
+            "roc_auc_std": std_roc_auc,
+        }
+    )
 
 # ============================================================================
 # STEP 3: TRAIN FINAL MODEL WITH BEST K
@@ -127,9 +131,9 @@ print("STEP 3: SELECT BEST K AND TRAIN FINAL MODEL")
 print("=" * 80)
 
 # Find best k by accuracy
-best_cv = max(cv_results, key=lambda x: x['accuracy_mean'])
-best_k = best_cv['k']
-best_features = best_cv['features']
+best_cv = max(cv_results, key=lambda x: x["accuracy_mean"])
+best_k = best_cv["k"]
+best_features = best_cv["features"]
 
 print(f"\nBest K: {best_k}")
 print(f"Features: {best_features}")
@@ -158,7 +162,7 @@ final_cm = confusion_matrix(y_test_final, y_pred_final)
 final_report = classification_report(y_test_final, y_pred_final)
 
 print("\nFinal Model Performance (Test Set):")
-print(f"  Accuracy:  {final_accuracy:.4f} ({final_accuracy*100:.2f}%)")
+print(f"  Accuracy:  {final_accuracy:.4f} ({final_accuracy * 100:.2f}%)")
 print(f"  F1 Score:  {final_f1:.4f}")
 print(f"  ROC-AUC:   {final_roc_auc:.4f}")
 
@@ -185,13 +189,17 @@ y_pred_rfe = rfe_model.predict(X_test_rfe_selected)
 
 rfe_accuracy = accuracy_score(y_test_rfe, y_pred_rfe)
 rfe_f1 = f1_score(y_test_rfe, y_pred_rfe)
-rfe_roc_auc = roc_auc_score(y_test_rfe, rfe_model.predict_proba(X_test_rfe_selected)[:, 1])
+rfe_roc_auc = roc_auc_score(
+    y_test_rfe, rfe_model.predict_proba(X_test_rfe_selected)[:, 1]
+)
 
-rfe_selected_features = [feat for feat, selected in zip(best_features, rfe.support_) if selected]
+rfe_selected_features = [
+    feat for feat, selected in zip(best_features, rfe.support_) if selected
+]
 
 print(f"RFE Selected Features ({len(rfe_selected_features)}): {rfe_selected_features}")
 print("RFE Model Performance:")
-print(f"  Accuracy:  {rfe_accuracy:.4f} ({rfe_accuracy*100:.2f}%)")
+print(f"  Accuracy:  {rfe_accuracy:.4f} ({rfe_accuracy * 100:.2f}%)")
 print(f"  F1 Score:  {rfe_f1:.4f}")
 print(f"  ROC-AUC:   {rfe_roc_auc:.4f}")
 
@@ -224,7 +232,9 @@ report_lines.append("=" * 80)
 report_lines.append("")
 
 for idx, row in feature_importance_df.head(20).iterrows():
-    report_lines.append(f"{idx+1:2d}. {row['feature']:40s} -> {row['importance']:.4f}")
+    report_lines.append(
+        f"{idx + 1:2d}. {row['feature']:40s} -> {row['importance']:.4f}"
+    )
 report_lines.append("")
 
 report_lines.append("=" * 80)
@@ -234,9 +244,15 @@ report_lines.append("")
 
 for result in cv_results:
     report_lines.append(f"K = {result['k']} Features:")
-    report_lines.append(f"  Accuracy:  {result['accuracy_mean']:.4f} ± {result['accuracy_std']:.4f}")
-    report_lines.append(f"  F1 Score:  {result['f1_mean']:.4f} ± {result['f1_std']:.4f}")
-    report_lines.append(f"  ROC-AUC:   {result['roc_auc_mean']:.4f} ± {result['roc_auc_std']:.4f}")
+    report_lines.append(
+        f"  Accuracy:  {result['accuracy_mean']:.4f} ± {result['accuracy_std']:.4f}"
+    )
+    report_lines.append(
+        f"  F1 Score:  {result['f1_mean']:.4f} ± {result['f1_std']:.4f}"
+    )
+    report_lines.append(
+        f"  ROC-AUC:   {result['roc_auc_mean']:.4f} ± {result['roc_auc_std']:.4f}"
+    )
     report_lines.append("")
 
 report_lines.append("=" * 80)
@@ -258,7 +274,7 @@ report_lines.append("FINAL MODEL PERFORMANCE (TEST SET)")
 report_lines.append("=" * 80)
 report_lines.append("")
 
-report_lines.append(f"Accuracy:  {final_accuracy:.4f} ({final_accuracy*100:.2f}%)")
+report_lines.append(f"Accuracy:  {final_accuracy:.4f} ({final_accuracy * 100:.2f}%)")
 report_lines.append(f"F1 Score:  {final_f1:.4f}")
 report_lines.append(f"ROC-AUC:   {final_roc_auc:.4f}")
 report_lines.append("")
@@ -282,7 +298,7 @@ for feat in rfe_selected_features:
 report_lines.append("")
 
 report_lines.append("RFE Model Performance:")
-report_lines.append(f"  Accuracy:  {rfe_accuracy:.4f} ({rfe_accuracy*100:.2f}%)")
+report_lines.append(f"  Accuracy:  {rfe_accuracy:.4f} ({rfe_accuracy * 100:.2f}%)")
 report_lines.append(f"  F1 Score:  {rfe_f1:.4f}")
 report_lines.append(f"  ROC-AUC:   {rfe_roc_auc:.4f}")
 report_lines.append("")

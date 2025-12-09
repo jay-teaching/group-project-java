@@ -4,7 +4,6 @@ __generated_with = "0.17.8"
 app = marimo.App(width="medium")
 
 with app.setup:
-    from pathlib import Path
 
     import joblib
     import marimo as mo

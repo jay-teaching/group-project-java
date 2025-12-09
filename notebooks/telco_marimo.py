@@ -121,7 +121,36 @@ def _(C_VALUE, MAX_ITER, SOLVER, TEST_SIZE, X_scaled, y):
 
 @app.cell
 def _(metrics):
-    print(metrics["confusion"])
+    acc = metrics["accuracy"]
+    f1 = metrics["f1"]
+    roc = metrics["roc_auc"]
+
+    mo.vstack([
+        mo.md("## Performance Summary"),
+        mo.md(
+            f"""- Accuracy: {acc:.3f}
+    - F1 Score: {f1:.3f}
+    - ROC AUC: {roc:.3f}
+    """
+            ),
+        ])
+    return
+
+
+@app.cell
+def _(metrics):
+    cm = metrics["confusion"]
+
+    cm_df = pd.DataFrame(
+        cm,
+        index=["Actual: No churn", "Actual: Churn"],
+        columns=["Pred: No churn", "Pred: Churn"],
+    )
+
+    mo.vstack([
+        mo.md("## Confusion Matrix"),
+        cm_df,
+    ])
     return
 
 

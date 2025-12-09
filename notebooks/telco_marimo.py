@@ -3,9 +3,7 @@ import marimo
 __generated_with = "0.17.8"
 app = marimo.App(width="medium")
 
-
-app._unparsable_cell(
-    r"""
+with app.setup:
     from pathlib import Path
 
     import joblib
@@ -16,13 +14,10 @@ app._unparsable_cell(
                                  confusion_matrix, f1_score, roc_auc_score)
     from sklearn.model_selection import train_test_split
     from sklearn.preprocessing import StandardScaler
-    """,
-    name="setup"
-)
 
 
 @app.cell(hide_code=True)
-def _(mo):
+def _():
     mo.md("""
     # Telco churn – baseline logistic regression
 
@@ -33,15 +28,16 @@ def _(mo):
 
 @app.cell
 def _():
-    DATA_PATH = "data/telco_churn.csv"
+    DATA_PATH = "input/WA_Fn-UseC_-Telco-Customer-Churn.csv"
     MAX_ITER = 1000
     MODEL_SAVE_PATH = "models/logistic_model.pkl"
     SAVE_MODEL = True
-    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TotalCharges"]
+    SELECTED_FEATURES = ["tenure", "MonthlyCharges", "TechSupport_yes", "Contract_one year","Contract_two year", "TotalCharges","Partner_yes", "StreamingTV_yes", "StreamingTV_no internet service"] 
     SOLVER = "lbfgs"
     TEST_SIZE = 0.2
     C_VALUE = 1.0
     return (
+        C_VALUE,
         DATA_PATH,
         MAX_ITER,
         MODEL_SAVE_PATH,
@@ -49,19 +45,18 @@ def _():
         SELECTED_FEATURES,
         SOLVER,
         TEST_SIZE,
-        C_VALUE,
     )
 
 
 @app.cell
-def _(DATA_PATH, pd):
+def _(DATA_PATH):
     telco_df = pd.read_csv(DATA_PATH)
     telco_df.head()
     return (telco_df,)
 
 
 @app.cell
-def _(SELECTED_FEATURES, StandardScaler, pd):
+def _(SELECTED_FEATURES):
     def preprocess_telco(df: pd.DataFrame):
         cleaned = df.copy()
         if "customerID" in cleaned.columns:
@@ -98,21 +93,7 @@ def _(preprocess_telco, telco_df):
 
 
 @app.cell
-def _(
-    C_VALUE,
-    LogisticRegression,
-    MAX_ITER,
-    SOLVER,
-    TEST_SIZE,
-    X_scaled,
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-    f1_score,
-    roc_auc_score,
-    train_test_split,
-    y,
-):
+def _(C_VALUE, MAX_ITER, SOLVER, TEST_SIZE, X_scaled, y):
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled,
         y,
@@ -152,7 +133,7 @@ def _(metrics):
 
 
 @app.cell
-def _(MODEL_SAVE_PATH, SAVE_MODEL, joblib, model, scaler):
+def _(MODEL_SAVE_PATH, SAVE_MODEL, model, scaler):
     if SAVE_MODEL:
         joblib.dump({"model": model, "scaler": scaler}, MODEL_SAVE_PATH)
     return

@@ -33,7 +33,7 @@ directory and can be run locally using `pytest`.
 
 # Deploying to Serverless
 
-The saved model can deployment to an Azure Function with the following
+The saved model can be deployed to an Azure Function with the following
 steps:
 
 

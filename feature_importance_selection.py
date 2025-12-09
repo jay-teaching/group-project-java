@@ -1,9 +1,8 @@
 import pandas as pd
-import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split, cross_val_score, cross_validate
+from sklearn.model_selection import train_test_split, cross_validate
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression, LassoCV
+from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import RFE
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, classification_report, confusion_matrix
 import joblib
@@ -57,7 +56,7 @@ feature_importance_df = pd.DataFrame({
 }).sort_values('importance', ascending=False)
 
 print(f"\nRandom Forest Accuracy: {rf_model.score(X_test, y_test):.4f}")
-print(f"\nTop 20 Most Important Features:")
+print("\nTop 20 Most Important Features:")
 print(feature_importance_df.head(20).to_string(index=False))
 print()
 
@@ -103,7 +102,7 @@ for k in k_values:
     std_f1 = cv_scores['test_f1'].std()
     std_roc_auc = cv_scores['test_roc_auc'].std()
     
-    print(f"Cross-Validation Results (5-fold):")
+    print("Cross-Validation Results (5-fold):")
     print(f"  Accuracy:  {mean_accuracy:.4f} ± {std_accuracy:.4f}")
     print(f"  F1 Score:  {mean_f1:.4f} ± {std_f1:.4f}")
     print(f"  ROC-AUC:   {mean_roc_auc:.4f} ± {std_roc_auc:.4f}")
@@ -158,7 +157,7 @@ final_roc_auc = roc_auc_score(y_test_final, y_proba_final)
 final_cm = confusion_matrix(y_test_final, y_pred_final)
 final_report = classification_report(y_test_final, y_pred_final)
 
-print(f"\nFinal Model Performance (Test Set):")
+print("\nFinal Model Performance (Test Set):")
 print(f"  Accuracy:  {final_accuracy:.4f} ({final_accuracy*100:.2f}%)")
 print(f"  F1 Score:  {final_f1:.4f}")
 print(f"  ROC-AUC:   {final_roc_auc:.4f}")
@@ -191,7 +190,7 @@ rfe_roc_auc = roc_auc_score(y_test_rfe, rfe_model.predict_proba(X_test_rfe_selec
 rfe_selected_features = [feat for feat, selected in zip(best_features, rfe.support_) if selected]
 
 print(f"RFE Selected Features ({len(rfe_selected_features)}): {rfe_selected_features}")
-print(f"RFE Model Performance:")
+print("RFE Model Performance:")
 print(f"  Accuracy:  {rfe_accuracy:.4f} ({rfe_accuracy*100:.2f}%)")
 print(f"  F1 Score:  {rfe_f1:.4f}")
 print(f"  ROC-AUC:   {rfe_roc_auc:.4f}")
@@ -204,7 +203,7 @@ print("SAVING FINAL MODEL")
 print("=" * 80)
 
 joblib.dump({"model": final_model, "scaler": scaler_final}, "models/telco_logistic_regression.joblib")
-print(f"\n✓ Model saved to models/telco_logistic_regression.joblib")
+print("\n✓ Model saved to models/telco_logistic_regression.joblib")
 
 # ============================================================================
 # GENERATE REPORT
@@ -292,7 +291,7 @@ for feat in rfe_selected_features:
     report_lines.append(f"  - {feat}")
 report_lines.append("")
 
-report_lines.append(f"RFE Model Performance:")
+report_lines.append("RFE Model Performance:")
 report_lines.append(f"  Accuracy:  {rfe_accuracy:.4f} ({rfe_accuracy*100:.2f}%)")
 report_lines.append(f"  F1 Score:  {rfe_f1:.4f}")
 report_lines.append(f"  ROC-AUC:   {rfe_roc_auc:.4f}")
@@ -305,5 +304,5 @@ report_text = "\n".join(report_lines)
 with open("feature_importance_output.txt", "w") as f:
     f.write(report_text)
 
-print(f"\n✓ Report saved to feature_importance_output.txt")
+print("\n✓ Report saved to feature_importance_output.txt")
 print(f"\n{report_text}")

@@ -1,0 +1,146 @@
+================================================================================
+TELCO CHURN PREDICTION - FEATURE IMPORTANCE SELECTION REPORT
+Generated: 2025-12-09 23:19:07
+================================================================================
+
+METHODOLOGY:
+1. Train Random Forest to get feature importances
+2. Test Logistic Regression with Top 5, 10, 15, 20 features
+3. Use 5-fold cross-validation for reliability
+4. Select best K by accuracy
+5. Train final model on best features
+6. Optional: Apply RFE for feature refinement
+
+================================================================================
+RANDOM FOREST - TOP 20 FEATURE IMPORTANCES
+================================================================================
+
+ 4. DeviceProtection_no internet service     -> 0.1835
+ 2. Contract_two year                        -> 0.1695
+ 3. Dependents_yes                           -> 0.1581
+11. OnlineBackup_no internet service         -> 0.0420
+29. gender_male                              -> 0.0399
+26. TechSupport_no internet service          -> 0.0360
+14. OnlineSecurity_yes                       -> 0.0311
+ 5. DeviceProtection_yes                     -> 0.0267
+27. TechSupport_yes                          -> 0.0262
+25. StreamingTV_yes                          -> 0.0256
+20. PhoneService_yes                         -> 0.0245
+ 6. InternetService_fiber optic              -> 0.0228
+16. Partner_yes                              -> 0.0217
+10. MultipleLines_yes                        -> 0.0206
+ 1. Contract_one year                        -> 0.0201
+ 7. InternetService_no                       -> 0.0200
+24. StreamingTV_no internet service          -> 0.0178
+18. PaymentMethod_electronic check           -> 0.0176
+22. StreamingMovies_no internet service      -> 0.0168
+28. TotalCharges                             -> 0.0138
+
+================================================================================
+CROSS-VALIDATION RESULTS - TOP K FEATURES
+================================================================================
+
+K = 5 Features:
+  Accuracy:  0.7342 ± 0.0003
+  F1 Score:  0.0000 ± 0.0000
+  ROC-AUC:   0.7276 ± 0.0126
+
+K = 10 Features:
+  Accuracy:  0.7517 ± 0.0098
+  F1 Score:  0.4983 ± 0.0208
+  ROC-AUC:   0.7883 ± 0.0154
+
+K = 15 Features:
+  Accuracy:  0.7809 ± 0.0073
+  F1 Score:  0.5604 ± 0.0132
+  ROC-AUC:   0.8213 ± 0.0155
+
+K = 20 Features:
+  Accuracy:  0.7948 ± 0.0078
+  F1 Score:  0.5766 ± 0.0181
+  ROC-AUC:   0.8356 ± 0.0119
+
+================================================================================
+SELECTED BEST MODEL
+================================================================================
+
+Best K Selected: 20
+Number of Features: 20
+
+Features:
+  - DeviceProtection_no internet service
+  - Contract_two year
+  - Dependents_yes
+  - OnlineBackup_no internet service
+  - gender_male
+  - TechSupport_no internet service
+  - OnlineSecurity_yes
+  - DeviceProtection_yes
+  - TechSupport_yes
+  - StreamingTV_yes
+  - PhoneService_yes
+  - InternetService_fiber optic
+  - Partner_yes
+  - MultipleLines_yes
+  - Contract_one year
+  - InternetService_no
+  - StreamingTV_no internet service
+  - PaymentMethod_electronic check
+  - StreamingMovies_no internet service
+  - TotalCharges
+
+================================================================================
+FINAL MODEL PERFORMANCE (TEST SET)
+================================================================================
+
+Accuracy:  0.7882 (78.82%)
+F1 Score:  0.5706
+ROC-AUC:   0.8231
+
+Confusion Matrix:
+[[911 122]
+ [176 198]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.88      0.86      1033
+           1       0.62      0.53      0.57       374
+
+    accuracy                           0.79      1407
+   macro avg       0.73      0.71      0.72      1407
+weighted avg       0.78      0.79      0.78      1407
+
+
+================================================================================
+RFE REFINEMENT RESULTS
+================================================================================
+
+RFE Selected Features (20):
+  - DeviceProtection_no internet service
+  - Contract_two year
+  - Dependents_yes
+  - OnlineBackup_no internet service
+  - gender_male
+  - TechSupport_no internet service
+  - OnlineSecurity_yes
+  - DeviceProtection_yes
+  - TechSupport_yes
+  - StreamingTV_yes
+  - PhoneService_yes
+  - InternetService_fiber optic
+  - Partner_yes
+  - MultipleLines_yes
+  - Contract_one year
+  - InternetService_no
+  - StreamingTV_no internet service
+  - PaymentMethod_electronic check
+  - StreamingMovies_no internet service
+  - TotalCharges
+
+RFE Model Performance:
+  Accuracy:  0.7889 (78.89%)
+  F1 Score:  0.5714
+  ROC-AUC:   0.8232
+
+================================================================================

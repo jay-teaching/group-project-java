@@ -130,6 +130,8 @@ or chose it through the `...` menu.
         - Provide the required parameters (tenure, monthly, techsupport)
         - Run the test and check the output for the prediction result.
 
+# Assignment README
+
 This repository contains a complete machine learning pipeline to predict customer churn for a telecommunications company using the IBM Telco Customer Churn dataset. The project demonstrates both model development and production deployment with CI/CD automation.
 
 ## Table of Contents

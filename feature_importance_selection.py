@@ -232,9 +232,7 @@ report_lines.append("=" * 80)
 report_lines.append("")
 
 for count, (idx, row) in enumerate(feature_importance_df.head(20).iterrows(), 1):
-    report_lines.append(
-        f"{count:2d}. {row['feature']:40s} -> {row['importance']:.4f}"
-    )
+    report_lines.append(f"{count:2d}. {row['feature']:40s} -> {row['importance']:.4f}")
 report_lines.append("")
 
 report_lines.append("=" * 80)

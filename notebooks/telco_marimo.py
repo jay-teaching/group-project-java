@@ -160,8 +160,8 @@ def _(metrics):
 
     cm_df = pd.DataFrame(
         cm,
-        index=["Actual: No churn", "Actual: Churn"],
-        columns=["Pred: No churn", "Pred: Churn"],
+        index=pd.Index(["Actual: No churn", "Actual: Churn"]),
+        columns=pd.Index(["Pred: No churn", "Pred: Churn"]),
     )
 
     mo.vstack(

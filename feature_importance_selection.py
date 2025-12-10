@@ -231,9 +231,9 @@ report_lines.append("RANDOM FOREST - TOP 20 FEATURE IMPORTANCES")
 report_lines.append("=" * 80)
 report_lines.append("")
 
-for idx, row in feature_importance_df.head(20).iterrows():
+for count, (idx, row) in enumerate(feature_importance_df.head(20).iterrows(), 1):
     report_lines.append(
-        f"{idx + 1:2d}. {row['feature']:40s} -> {row['importance']:.4f}"
+        f"{count:2d}. {row['feature']:40s} -> {row['importance']:.4f}"
     )
 report_lines.append("")
 

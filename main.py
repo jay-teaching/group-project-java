@@ -4,8 +4,30 @@ from pydantic import BaseModel
 import joblib
 import numpy as np
 from pathlib import Path
+from contextlib import asynccontextmanager
 
-app = FastAPI(title="Telco Churn Prediction API")
+# Load model and scaler
+MODEL_PATH = Path("models/telco_logistic_regression.joblib")
+model = None
+scaler = None
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    global model, scaler
+    try:
+        data = joblib.load(MODEL_PATH)
+        model = data["model"]
+        scaler = data["scaler"]
+        print("Model loaded successfully")
+    except FileNotFoundError:
+        print(f"Warning: Model file not found at {MODEL_PATH}")
+    yield
+    # Shutdown
+
+
+app = FastAPI(title="Telco Churn Prediction API", lifespan=lifespan)
 
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
@@ -15,23 +37,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Load model and scaler
-MODEL_PATH = Path("models/telco_logistic_regression.joblib")
-model = None
-scaler = None
-
-
-@app.on_event("startup")
-def load_model():
-    global model, scaler
-    try:
-        data = joblib.load(MODEL_PATH)
-        model = data["model"]
-        scaler = data["scaler"]
-        print("Model loaded successfully")
-    except FileNotFoundError:
-        print(f"Warning: Model file not found at {MODEL_PATH}")
 
 
 # Feature names must match the training features

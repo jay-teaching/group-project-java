@@ -56,20 +56,98 @@ def _():
 
 @app.cell
 def _():
+    """Interactive hyperparameter configuration with sliders."""
     # Data Configuration
     DATA_PATH = "input/WA_Fn-UseC_-Telco-Customer-Churn.csv"
 
-    # Model Hyperparameters
-    MAX_ITER = 1000
-    SOLVER = "lbfgs"
-    C_VALUE = 1.0
+    # Interactive Hyperparameters with Sliders
+    mo.md("### Model Hyperparameters")
 
-    # Training Configuration
-    TEST_SIZE = 0.2
+    c_value_slider = mo.ui.slider(
+        value=1.0,
+        start=0.001,
+        stop=100.0,
+        step=0.1,
+        label="Regularization Strength (C)",
+    )
+
+    max_iter_slider = mo.ui.slider(
+        value=1000,
+        start=100,
+        stop=5000,
+        step=100,
+        label="Max Iterations",
+    )
+
+    test_size_slider = mo.ui.slider(
+        value=0.2,
+        start=0.1,
+        stop=0.4,
+        step=0.05,
+        label="Test Set Size",
+    )
+
+    mo.vstack(
+        [
+            mo.md("**Regularization (C):** Controls model complexity"),
+            c_value_slider,
+            mo.md(""),
+            mo.md("**Max Iterations:** Convergence threshold"),
+            max_iter_slider,
+            mo.md(""),
+            mo.md("**Test Size:** Fraction of data for testing"),
+            test_size_slider,
+        ]
+    )
+
+    return c_value_slider, max_iter_slider, test_size_slider, DATA_PATH
+
+
+@app.cell
+def _(c_value_slider, max_iter_slider, test_size_slider):
+    """Extract slider values and display current configuration."""
+    C_VALUE = c_value_slider.value
+    MAX_ITER = max_iter_slider.value
+    TEST_SIZE = test_size_slider.value
+
+    mo.vstack(
+        [
+            mo.md("### Current Configuration"),
+            mo.md(f"- **Regularization (C):** {C_VALUE:.3f}"),
+            mo.md(f"- **Max Iterations:** {MAX_ITER}"),
+            mo.md(f"- **Test Size:** {TEST_SIZE:.2f} ({TEST_SIZE * 100:.0f}%)"),
+        ]
+    )
+
+    # Fixed Configuration
+    SOLVER = "lbfgs"
     RANDOM_STATE = 42
 
-    # Feature Selection (logically chosen)
-    SELECTED_FEATURES = [
+    return (
+        C_VALUE,
+        MAX_ITER,
+        SOLVER,
+        TEST_SIZE,
+        RANDOM_STATE,
+    )
+
+
+@app.cell
+def _():
+    """Interactive feature selection with checkboxes."""
+    mo.md("""
+    ### Feature Selection
+    
+    Choose which features to use for model training. The default selection is based on domain knowledge and statistical analysis.
+    """)
+    return
+
+
+@app.cell
+def _():
+    """Feature selection with checkboxes."""
+    # All available features after encoding
+    ALL_FEATURES = [
         "tenure",
         "MonthlyCharges",
         "TechSupport_yes",
@@ -81,20 +159,56 @@ def _():
         "StreamingTV_no internet service",
     ]
 
+    # Create checkboxes for each feature
+    feature_checkboxes = {
+        feature: mo.ui.checkbox(value=True, label=feature) for feature in ALL_FEATURES
+    }
+
+    # Display in columns
+    mo.vstack(
+        [
+            mo.md(
+                "**Select features to use (default: all 9 logically-chosen features):**"
+            ),
+            mo.hstack(
+                [
+                    mo.vstack(
+                        [feature_checkboxes[feature] for feature in ALL_FEATURES[:5]]
+                    ),
+                    mo.vstack(
+                        [feature_checkboxes[feature] for feature in ALL_FEATURES[5:]]
+                    ),
+                ]
+            ),
+        ]
+    )
+
+    return ALL_FEATURES, feature_checkboxes
+
+
+@app.cell
+def _(ALL_FEATURES, feature_checkboxes):
+    """Extract selected features from checkboxes."""
+    SELECTED_FEATURES = [
+        feature for feature in ALL_FEATURES if feature_checkboxes[feature].value
+    ]
+
+    if not SELECTED_FEATURES:
+        SELECTED_FEATURES = ALL_FEATURES  # Fallback to all features
+
+    return SELECTED_FEATURES
+
+
+@app.cell
+def _():
+    """Export configuration."""
     # Export Configuration
     MODEL_SAVE_PATH = "models/telco_logistic_regression.joblib"
     SAVE_MODEL = True
 
     return (
-        C_VALUE,
-        DATA_PATH,
-        MAX_ITER,
         MODEL_SAVE_PATH,
-        RANDOM_STATE,
         SAVE_MODEL,
-        SELECTED_FEATURES,
-        SOLVER,
-        TEST_SIZE,
     )
 
 

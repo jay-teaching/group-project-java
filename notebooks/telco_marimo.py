@@ -146,17 +146,17 @@ def _():
 @app.cell
 def _():
     """Feature selection with checkboxes."""
-    # All available features after encoding
+    # All available features after encoding (using underscores - best practice)
     ALL_FEATURES = [
         "tenure",
         "MonthlyCharges",
         "TechSupport_yes",
-        "Contract_one year",
-        "Contract_two year",
+        "Contract_one_year",
+        "Contract_two_year",
         "TotalCharges",
         "Partner_yes",
         "StreamingTV_yes",
-        "StreamingTV_no internet service",
+        "StreamingTV_no_internet_service",
     ]
 
     # Create checkboxes for each feature
@@ -315,8 +315,9 @@ def _(SELECTED_FEATURES, RANDOM_STATE):
         2. Handle missing/invalid values
         3. Normalize text (lowercase, strip whitespace)
         4. One-hot encode categorical features
-        5. Select relevant features
-        6. Standardize numerical features
+        5. Rename columns to use underscores (best practice)
+        6. Select relevant features
+        7. Standardize numerical features
 
         Args:
             df: Raw Telco dataset
@@ -353,11 +354,14 @@ def _(SELECTED_FEATURES, RANDOM_STATE):
         # Step 4: One-hot encode categorical features
         X = pd.get_dummies(cleaned.drop(columns=["Churn"]), drop_first=True, dtype=int)
         y = cleaned["Churn"].map({"yes": 1, "no": 0}).to_numpy()
+        
+        # Step 5: Rename columns to use underscores instead of spaces (best practice)
+        X.columns = X.columns.str.replace(' ', '_')
 
-        # Step 5: Select relevant features
+        # Step 6: Select relevant features
         X = X[SELECTED_FEATURES]
 
-        # Step 6: Standardize (scale) features
+        # Step 7: Standardize (scale) features
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
 

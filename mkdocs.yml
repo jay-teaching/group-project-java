@@ -1,0 +1,14 @@
+site_name: My Docs
+
+theme: 
+  name: material 
+  palette:
+    primary: teal
+    accent: light green
+  features:
+    - navigation.tracking
+    - toc.follow
+    - toc.integrate 
+    - navigation.top
+
+

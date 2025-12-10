@@ -2,11 +2,37 @@ import streamlit as st
 import requests
 import os
 
+# API configuration - similar to dashboard.py
+DEV_API = "http://127.0.0.1:8000/predict"
+PROD_API = os.getenv("API_URL")
+
+
+def fetch_prediction(payload: dict) -> dict:
+    """Call the prediction API and return the JSON response"""
+    response = requests.post(DEV_API, json=payload, timeout=5)
+    response.raise_for_status()
+    return response.json()
+
+
+def fetch_prediction_from_production(params: dict) -> requests.Response:
+    """Call the production API and return the response.
+
+    Our serverless function doesnt support JSON in or out
+    Plus we need to increase the timeout for cold starts.
+    """
+    if not PROD_API:
+        raise ValueError(
+            "API_URL environment variable is not set. "
+            "Please set it in your environment or .env file."
+        )
+    url = PROD_API + "&" + "&".join(f"{k}={v}" for k, v in params.items())
+    response = requests.get(url, timeout=20)
+    response.raise_for_status()
+    return response
+
+
 # Page configuration
 st.set_page_config(page_title="Telco Churn Prediction", page_icon="📊", layout="wide")
-
-# API configuration
-API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 # Title and description
 st.title("📊 Telco Customer Churn Prediction")
@@ -95,46 +121,43 @@ with col2:
         }
 
         try:
-            # Make API request
+            # Make API request using production API (query params)
             with st.spinner("Making prediction..."):
-                response = requests.post(f"{API_URL}/predict", json=payload)
+                response = fetch_prediction_from_production(payload)
+            
+            # Parse the response text as JSON
+            import json
+            result = json.loads(response.text)
 
-            if response.status_code == 200:
-                result = response.json()
+            # Display prediction
+            churn_prob = result.get("churn_probability", 0)
+            churn_pred = result.get("churn_prediction", "Unknown")
+            confidence = result.get("confidence", 0)
 
-                # Display prediction
-                churn_prob = result["churn_probability"]
-                churn_pred = result["churn_prediction"]
-                confidence = result["confidence"]
-
-                # Color-coded result
-                if churn_pred == "Yes":
-                    st.error("⚠️ **High Churn Risk**")
-                    st.markdown(
-                        "This customer is likely to churn. Consider retention strategies."
-                    )
-                else:
-                    st.success("✅ **Low Churn Risk**")
-                    st.markdown(
-                        "This customer is likely to stay. Focus on maintaining satisfaction."
-                    )
-
-                # Metrics
-                st.metric("Churn Probability", f"{churn_prob * 100:.2f}%")
-                st.metric("Model Confidence", f"{confidence * 100:.2f}%")
-
-                # Progress bar
-                st.progress(churn_prob)
-
+            # Color-coded result
+            if churn_pred == "Yes":
+                st.error("⚠️ **High Churn Risk**")
+                st.markdown(
+                    "This customer is likely to churn. Consider retention strategies."
+                )
             else:
-                st.error(f"API Error: {response.status_code}")
-                st.json(response.json())
+                st.success("✅ **Low Churn Risk**")
+                st.markdown(
+                    "This customer is likely to stay. Focus on maintaining satisfaction."
+                )
 
-        except requests.exceptions.ConnectionError:
-            st.error("❌ Cannot connect to API")
-            st.info("Make sure the FastAPI backend is running at http://localhost:8000")
-        except Exception as e:
-            st.error(f"Error: {str(e)}")
+            # Metrics
+            st.metric("Churn Probability", f"{churn_prob * 100:.2f}%")
+            st.metric("Model Confidence", f"{confidence * 100:.2f}%")
+
+            # Progress bar
+            st.progress(churn_prob)
+
+            # Show full response
+            st.json(result)
+
+        except requests.RequestException as e:
+            st.error(f"Error calling API: {e}")
 
 # Sidebar with information
 with st.sidebar:
@@ -158,7 +181,7 @@ with st.sidebar:
 
     # Check API health
     try:
-        health_response = requests.get(f"{API_URL}/health", timeout=2)
+        health_response = requests.get(f"{DEV_API.replace('/predict', '/health')}", timeout=2)
         if health_response.status_code == 200:
             st.success("✅ API Online")
         else:

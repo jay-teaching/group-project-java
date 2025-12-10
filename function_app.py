@@ -1,5 +1,6 @@
 import azure.functions as func
 import logging
+import json
 from prediction import make_prediction
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
@@ -35,15 +36,18 @@ def predict(req: func.HttpRequest) -> func.HttpResponse:
         ]
     ):
         return func.HttpResponse(
-            "Please provide all required parameters: tenure, MonthlyCharges, TechSupport_yes, "
-            "Contract_one_year, Contract_two_year, TotalCharges, Partner_yes, "
-            "StreamingTV_yes, StreamingTV_no_internet_service",
+            json.dumps({
+                "error": "Please provide all required parameters: tenure, MonthlyCharges, TechSupport_yes, "
+                "Contract_one_year, Contract_two_year, TotalCharges, Partner_yes, "
+                "StreamingTV_yes, StreamingTV_no_internet_service"
+            }),
             status_code=400,
+            mimetype="application/json"
         )
 
     try:
         # Convert to appropriate types and make prediction
-        prediction = make_prediction(
+        churn_prob = make_prediction(
             tenure=float(tenure),
             MonthlyCharges=float(monthly_charges),
             TechSupport_yes=int(tech_support),
@@ -55,9 +59,29 @@ def predict(req: func.HttpRequest) -> func.HttpResponse:
             StreamingTV_no_internet_service=int(streaming_no_internet),
         )
 
+        # Determine churn prediction (Yes/No) based on threshold
+        churn_prediction = "Yes" if churn_prob > 0.5 else "No"
+        
+        # Calculate confidence (distance from 0.5 threshold)
+        confidence = abs(churn_prob - 0.5) * 2  # Scale to 0-1 range
+
+        # Return JSON response matching Streamlit app expectations
+        response_data = {
+            "churn_probability": churn_prob,
+            "churn_prediction": churn_prediction,
+            "confidence": confidence
+        }
+
         return func.HttpResponse(
-            f"Churn probability: {prediction:.4f}", status_code=200
+            json.dumps(response_data),
+            status_code=200,
+            mimetype="application/json"
         )
     except Exception as e:
         logging.error(f"Error making prediction: {str(e)}")
-        return func.HttpResponse(f"Error making prediction: {str(e)}", status_code=500)
+        return func.HttpResponse(
+            json.dumps({"error": f"Error making prediction: {str(e)}"}),
+            status_code=500,
+            mimetype="application/json"
+        )
+

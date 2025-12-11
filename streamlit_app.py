@@ -196,7 +196,7 @@ with st.sidebar:
                 st.success("✅ API Online (Local)")
             else:
                 st.error("❌ API Error")
-    except Exception as e:
+    except Exception:
         st.error("❌ API Offline")
         if not PROD_API:
             st.caption("Make sure FastAPI is running locally on port 8000")

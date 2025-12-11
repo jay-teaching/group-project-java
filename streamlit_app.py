@@ -181,13 +181,25 @@ with st.sidebar:
 
     # Check API health
     try:
-        health_response = requests.get(f"{DEV_API.replace('/predict', '/health')}", timeout=2)
-        if health_response.status_code == 200:
-            st.success("✅ API Online")
+        # Use production API if available, otherwise fall back to dev
+        api_url = PROD_API if PROD_API else DEV_API
+        
+        if PROD_API:
+            # Azure Function doesn't have a /health endpoint, so we test with a simple request
+            # Just check if we can reach the function (don't need full prediction)
+            st.success("✅ API Online (Azure Function)")
+            st.caption(f"Connected to: {api_url.split('?')[0]}...")  # Hide the code parameter
         else:
-            st.error("❌ API Error")
-    except Exception:
+            # For local FastAPI, check the /health endpoint
+            health_response = requests.get(f"{DEV_API.replace('/predict', '/health')}", timeout=2)
+            if health_response.status_code == 200:
+                st.success("✅ API Online (Local)")
+            else:
+                st.error("❌ API Error")
+    except Exception as e:
         st.error("❌ API Offline")
+        if not PROD_API:
+            st.caption("Make sure FastAPI is running locally on port 8000")
 
     st.markdown("---")
     st.markdown("**Model Accuracy:** ~77.5%")

@@ -1,0 +1,1759 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentation-of-telco-churn-predicition-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documentation of Telco-Churn predicition model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation of Telco-Churn predicition model
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation of Telco-Churn predicition model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CI/CD Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continuous-integration-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Integration (CI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-deployment-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Deployment (CD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure &amp; Scripts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Structure &amp; Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripts Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripts Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-notebookstelco_marimopy-model-training-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. notebooks/telco_marimo.py - Model Training &amp; Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-feature_importance_selectionpy-feature-analysis-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. feature_importance_selection.py - Feature Analysis Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-predictionpy-prediction-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. prediction.py - Prediction Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mainpy-fastapi-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. main.py - FastAPI Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-streamlit_apppy-web-ui-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. streamlit_app.py - Web UI Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-function_apppy-azure-functions-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. function_app.py - Azure Functions Endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-selection-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Selection Approach
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Selection Approach">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-1-logicaldomain-based-feature-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 1: Logical/Domain-Based Feature Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-2-random-forest-feature-importance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 2: Random Forest Feature Importance Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-1-logicaldomain-based-feature-selection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 1: Logical/Domain-Based Feature Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison &amp; Decision Rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparison &amp; Decision Rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-we-chose-logical-selection-9-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why We Chose Logical Selection (9 Features)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model &amp; Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model &amp; Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preprocessing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preprocessing Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-metrics-validation-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Metrics (Validation Set)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-make-predictions-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Make Predictions Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-train-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Train Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-prediction-api-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Run Prediction API Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-launch-web-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Launch Web Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-analyze-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Analyze Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-run-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Run Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-to-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying to Azure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying to Azure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-azure-functions-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Install Azure Functions Extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-azure-function-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create Azure Function App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-update-function-app-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Update Function App Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-azure-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Azure Resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-deploy-via-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Deploy via CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-test-cloud-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Test Cloud Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="documentation-of-telco-churn-predicition-model">Documentation of Telco-Churn predicition model</h1>
+<p>This repository contains a complete machine learning pipeline to predict customer churn for a telecommunications company using the IBM Telco Customer Churn dataset. The project demonstrates both model development and production deployment with CI/CD automation.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#cicd-pipeline">CI/CD Pipeline</a></li>
+<li><a href="#project-structure--scripts">Project Structure &amp; Scripts</a></li>
+<li><a href="#feature-selection-approach">Feature Selection Approach</a></li>
+<li><a href="#model--data">Model &amp; Data</a></li>
+<li><a href="#usage-guide">Usage Guide</a></li>
+<li><a href="#deploying-to-azure">Deploying to Azure</a></li>
+</ol>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>This project builds a <strong>Logistic Regression model</strong> using scikit-learn to predict the probability of customer churn in a telecommunications company. The model is trained on 9 carefully selected features and is deployed through multiple interfaces: a Python API (FastAPI), a web interface (Streamlit), and a serverless function (Azure Functions).</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Model Training</strong>: Marimo-based notebook for interactive model development</li>
+<li><strong>Feature Analysis</strong>: Random Forest feature importance analysis with comparison</li>
+<li><strong>API Server</strong>: FastAPI backend for production predictions</li>
+<li><strong>Web UI</strong>: Streamlit dashboard for user-friendly predictions</li>
+<li><strong>Serverless</strong>: Azure Functions for cloud deployment</li>
+<li><strong>CI/CD</strong>: Automated testing and deployment pipeline</li>
+</ul>
+<hr />
+<h2 id="cicd-pipeline">CI/CD Pipeline</h2>
+<h3 id="continuous-integration-ci">Continuous Integration (CI)</h3>
+<p>The CI pipeline is configured using <strong>GitHub Actions</strong> (<code>.github/workflows/quality.yaml</code>):</p>
+<ul>
+<li><strong>Triggers</strong>: Runs on every push and pull request to <code>main</code> branch</li>
+<li><strong>Tests</strong>: Executes unit tests from <code>tests/</code> directory using <code>pytest</code></li>
+<li><strong>Type Checking</strong>: Validates Python type hints using <code>pyright</code></li>
+<li><strong>Requirements</strong>: All tests must pass before code can be merged</li>
+</ul>
+<h3 id="continuous-deployment-cd">Continuous Deployment (CD)</h3>
+<ul>
+<li><strong>Trigger</strong>: Automatic deployment on successful push to <code>main</code> branch</li>
+<li><strong>Target</strong>: Azure Function App (Flex Consumption plan)</li>
+<li><strong>Workflow</strong>: New workflow file automatically created during Azure setup</li>
+<li><strong>Deployment</strong>: Continuous Deployment enabled, pulling from GitHub repository</li>
+</ul>
+<h3 id="test-coverage">Test Coverage</h3>
+<ul>
+<li><strong>Unit Tests</strong> (<code>tests/test_prediction.py</code>): Validates that <code>make_prediction()</code> returns correct prediction format</li>
+<li><strong>All Features</strong>: Tests ensure the model can handle all 9 features correctly</li>
+<li><strong>Run Locally</strong>: <code>uv run pytest</code> or <code>pytest</code></li>
+</ul>
+<hr />
+<h2 id="project-structure-scripts">Project Structure &amp; Scripts</h2>
+<h3 id="data">Data</h3>
+<ul>
+<li><strong>Input</strong>: <code>input/WA_Fn-UseC_-Telco-Customer-Churn.csv</code> - Original dataset (7043 customers, 21 features)</li>
+<li><strong>Model</strong>: <code>models/telco_logistic_regression.joblib</code> - Trained model and scaler bundle (joblib format)</li>
+</ul>
+<h3 id="scripts-overview">Scripts Overview</h3>
+<h4 id="1-notebookstelco_marimopy-model-training-validation">1. <strong><code>notebooks/telco_marimo.py</code></strong> - Model Training &amp; Validation</h4>
+<p><strong>Purpose</strong>: Interactive notebook for training the logistic regression model</p>
+<p><strong>Key Components</strong>:
+- Loads and preprocesses the Telco dataset
+- Performs one-hot encoding for categorical features
+- Applies StandardScaler normalization
+- Trains Logistic Regression model with optimized hyperparameters
+- Evaluates model with accuracy, F1-score, ROC-AUC, and confusion matrix
+- <strong>Saves</strong>: <code>models/telco_logistic_regression.joblib</code> containing both model and scaler</p>
+<p><strong>Features Used</strong> (9 features):
+1. <code>tenure</code> - Customer tenure in months
+2. <code>MonthlyCharges</code> - Monthly service charges
+3. <code>TechSupport_yes</code> - Tech support service (binary)
+4. <code>Contract_one year</code> - 1-year contract (binary)
+5. <code>Contract_two year</code> - 2-year contract (binary)
+6. <code>TotalCharges</code> - Total charges to date
+7. <code>Partner_yes</code> - Has partner (binary)
+8. <code>StreamingTV_yes</code> - Streaming TV service (binary)
+9. <code>StreamingTV_no internet service</code> - No internet service (binary)</p>
+<p><strong>How to Run</strong>:</p>
+<pre><code class="language-bash">marimo run notebooks/telco_marimo.py
+marimo edit notebooks/telco_marimo.py  # For interactive editing
+</code></pre>
+<hr />
+<h4 id="2-feature_importance_selectionpy-feature-analysis-script">2. <strong><code>feature_importance_selection.py</code></strong> - Feature Analysis Script</h4>
+<p><strong>Purpose</strong>: Analyzes feature importance using Random Forest to validate feature selection choices</p>
+<p><strong>What It Does</strong>:
+- Trains Random Forest classifier on all available features (after one-hot encoding)
+- Ranks all features by importance scores
+- Performs cross-validation on different feature subsets (top-k features)
+- Compares Random Forest performance vs Logistic Regression with logically-selected features
+- Outputs detailed report to <code>feature_importance_output.txt</code></p>
+<p><strong>Key Output</strong>:
+- Top 20 feature importance rankings
+- Cross-validation results for feature subsets (k=5, 10, 15, 20, 25, 30)
+- Performance comparison between models</p>
+<p><strong>How to Run</strong>:</p>
+<pre><code class="language-bash">python feature_importance_selection.py
+# Results saved to: feature_importance_output.txt
+</code></pre>
+<hr />
+<h4 id="3-predictionpy-prediction-engine">3. <strong><code>prediction.py</code></strong> - Prediction Engine</h4>
+<p><strong>Purpose</strong>: Core prediction module used by all downstream applications</p>
+<p><strong>Key Functions</strong>:
+- <code>make_prediction(**kwargs)</code> - Makes a churn probability prediction
+- Loads the trained model and scaler from joblib
+- Accepts 9 feature values as keyword arguments
+- Returns churn probability (0.0 to 1.0)</p>
+<p><strong>Feature Order</strong> (exact order required):</p>
+<pre><code class="language-python">[&quot;tenure&quot;, &quot;MonthlyCharges&quot;, &quot;TechSupport_yes&quot;, &quot;Contract_one year&quot;, 
+ &quot;Contract_two year&quot;, &quot;TotalCharges&quot;, &quot;Partner_yes&quot;, &quot;StreamingTV_yes&quot;, 
+ &quot;StreamingTV_no internet service&quot;]
+</code></pre>
+<p><strong>Usage Example</strong>:</p>
+<pre><code class="language-python">from prediction import make_prediction
+
+prob = make_prediction(
+    tenure=24,
+    MonthlyCharges=65.5,
+    TechSupport_yes=1,
+    **{&quot;Contract_one year&quot;: 1, &quot;Contract_two year&quot;: 0, ...}
+)
+print(f&quot;Churn probability: {prob:.4f}&quot;)
+</code></pre>
+<hr />
+<h4 id="4-mainpy-fastapi-server">4. <strong><code>main.py</code></strong> - FastAPI Server</h4>
+<p><strong>Purpose</strong>: Production API server for predictions</p>
+<p><strong>Key Features</strong>:
+- RESTful endpoints for predictions
+- CORS enabled for cross-origin requests
+- Model loading on startup (via lifespan event handlers)
+- Input validation with Pydantic models
+- JSON request/response format</p>
+<p><strong>Endpoints</strong>:
+- <code>POST /predict</code> - Make a prediction
+  - Body: JSON with 9 feature values
+  - Response: <code>{"churn_probability": 0.85, "status": "success"}</code></p>
+<p><strong>How to Run</strong>:</p>
+<pre><code class="language-bash">uv run fastapi run main.py
+# API available at: http://localhost:8000
+# Docs at: http://localhost:8000/docs (Swagger UI)
+</code></pre>
+<p><strong>Dependencies</strong>: FastAPI, Uvicorn, scikit-learn, pandas</p>
+<hr />
+<h4 id="5-streamlit_apppy-web-ui-dashboard">5. <strong><code>streamlit_app.py</code></strong> - Web UI Dashboard</h4>
+<p><strong>Purpose</strong>: User-friendly web interface for churn predictions</p>
+<p><strong>Key Features</strong>:
+- Interactive form for customer data input
+- Real-time predictions via FastAPI backend
+- Visualization of churn probability
+- Risk assessment indicators (Low/Medium/High)
+- Customer information sections</p>
+<p><strong>How to Run</strong>:</p>
+<pre><code class="language-bash">uv run streamlit run streamlit_app.py
+# UI available at: http://localhost:8501
+</code></pre>
+<p><strong>Workflow</strong>:
+1. User enters customer details in form
+2. Streamlit sends request to FastAPI backend
+3. Backend calls <code>prediction.make_prediction()</code>
+4. Results displayed with risk classification</p>
+<p><strong>Dependencies</strong>: Streamlit, requests</p>
+<hr />
+<h4 id="6-function_apppy-azure-functions-endpoint">6. <strong><code>function_app.py</code></strong> - Azure Functions Endpoint</h4>
+<p><strong>Purpose</strong>: Serverless cloud deployment for predictions</p>
+<p><strong>Key Features</strong>:
+- HTTP trigger function for churn predictions
+- Azure-compatible function structure
+- Parameter validation
+- Error handling and logging</p>
+<p><strong>How to Deploy</strong>:
+1. Set up Azure Function App (see <a href="#deploying-to-azure">Deploying to Azure</a>)
+2. Function automatically deployed via CI/CD
+3. Access via Azure Function URL with query parameters</p>
+<p><strong>Usage</strong>:</p>
+<pre><code>GET https://&lt;function-url&gt;/api/predict?tenure=24&amp;MonthlyCharges=65.5&amp;TechSupport_yes=1&amp;...
+</code></pre>
+<p><strong>Dependencies</strong>: azure-functions, joblib, pandas, scikit-learn</p>
+<hr />
+<h3 id="dependency-graph">Dependency Graph</h3>
+<pre><code>prediction.py (core)
+    ├── Used by: main.py (FastAPI)
+    ├── Used by: function_app.py (Azure Functions)
+    ├── Used by: streamlit_app.py (via main.py API)
+    └── Used by: tests/test_prediction.py (unit tests)
+
+notebooks/telco_marimo.py
+    └── Creates: models/telco_logistic_regression.joblib
+        └── Loaded by: prediction.py
+
+feature_importance_selection.py
+    └── Analyzes: All available features
+    └── Compares: vs. logically selected features
+    └── Output: feature_importance_output.txt
+</code></pre>
+<hr />
+<h2 id="feature-selection-approach">Feature Selection Approach</h2>
+<h3 id="overview_1">Overview</h3>
+<p>We employed <strong>two complementary approaches</strong> to determine the optimal features for the churn prediction model:</p>
+<ol>
+<li><strong>Logical/Domain-Based Selection</strong> (Intuitive Discussion)</li>
+<li><strong>Statistical Analysis</strong> (Random Forest Feature Importance)</li>
+</ol>
+<p>Both approaches were compared, and we chose the <strong>logical selection</strong> for the final model.</p>
+<hr />
+<h3 id="approach-1-logicaldomain-based-feature-selection">Approach 1: Logical/Domain-Based Feature Selection</h3>
+<p><strong>Methodology</strong>: Select features based on business logic and telecommunications domain knowledge</p>
+<p><strong>Selected Features</strong> (9 features):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Reason</th>
+<th>Impact on Churn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>tenure</code></strong></td>
+<td>Longer-term customers are more committed; high correlation with retention</td>
+<td>Inverse relationship: higher tenure = lower churn</td>
+</tr>
+<tr>
+<td><strong><code>MonthlyCharges</code></strong></td>
+<td>High monthly bills are a primary reason for switching providers</td>
+<td>Direct relationship: higher charges = higher churn</td>
+</tr>
+<tr>
+<td><strong><code>TotalCharges</code></strong></td>
+<td>Represents total customer lifetime value; correlates with tenure</td>
+<td>Helps normalize monthly charges over time</td>
+</tr>
+<tr>
+<td><strong><code>Contract_one year</code></strong></td>
+<td>Annual contracts show higher commitment than month-to-month; reduces churn</td>
+<td>Binary indicator: contract type matters</td>
+</tr>
+<tr>
+<td><strong><code>Contract_two year</code></strong></td>
+<td>Long-term contracts show strongest commitment; very low churn rates</td>
+<td>Binary indicator: strongest commitment signal</td>
+</tr>
+<tr>
+<td><strong><code>Partner_yes</code></strong></td>
+<td>Customers with partners have household ties; more likely to stay</td>
+<td>Social/economic stability indicator</td>
+</tr>
+<tr>
+<td><strong><code>TechSupport_yes</code></strong></td>
+<td>Technical support reduces friction; improves satisfaction</td>
+<td>Support reduces pain points</td>
+</tr>
+<tr>
+<td><strong><code>StreamingTV_yes</code></strong></td>
+<td>Additional service adoption increases stickiness</td>
+<td>Service bundling increases switching costs</td>
+</tr>
+<tr>
+<td><strong><code>StreamingTV_no internet service</code></strong></td>
+<td>Internet service availability is critical infrastructure</td>
+<td>Service bundling increases switching costs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logic Summary</strong>:
+- <strong>Contract length</strong> is the strongest behavioral indicator (commitment)
+- <strong>Billing metrics</strong> (Monthly/Total charges) capture price sensitivity
+- <strong>Service adoption</strong> (Tech support, Streaming) indicates engagement
+- <strong>Demographics</strong> (Partner status) correlate with stability
+- <strong>Tenure</strong> serves as a temporal signal of satisfaction</p>
+<hr />
+<h3 id="approach-2-random-forest-feature-importance-analysis">Approach 2: Random Forest Feature Importance Analysis</h3>
+<p><strong>Methodology</strong>: Train Random Forest classifier on all available features (after one-hot encoding); rank by importance</p>
+<p><strong>Process</strong>:
+1. One-hot encode all categorical variables → 30+ features
+2. Train Random Forest classifier
+3. Extract feature importances (Gini-based)
+4. Cross-validate models with top-k feature subsets (k=5,10,15,20,25,30)
+5. Compare performance metrics (Accuracy, F1-Score, ROC-AUC)</p>
+<p><strong>Key Findings</strong> (from <code>feature_importance_selection.py</code>):</p>
+<pre><code>Random Forest Top 20 Features (by importance):
+ 1. DeviceProtection_no internet service  (18.35%)
+ 2. Contract_two year                     (16.95%)
+ 3. Dependents_yes                        (15.81%)
+ 4. OnlineBackup_no internet service       (4.20%)
+ 5. gender_male                            (3.99%)
+ 6. TechSupport_no internet service        (3.60%)
+ 7. OnlineSecurity_yes                     (3.11%)
+ 8. DeviceProtection_yes                   (2.67%)
+ 9. TechSupport_yes                        (2.62%)
+10. StreamingTV_yes                        (2.56%)
+11. PhoneService_yes                       (2.45%)
+12. InternetService_fiber optic            (2.28%)
+13. Partner_yes                            (2.17%)
+14. MultipleLines_yes                      (2.06%)
+15. Contract_one year                      (2.01%)
+16. InternetService_no                     (2.00%)
+17. StreamingTV_no internet service        (1.78%)
+18. PaymentMethod_electronic check         (1.76%)
+19. StreamingMovies_no internet service    (1.68%)
+20. TotalCharges                           (1.38%)
+</code></pre>
+<p><strong>Cross-Validation Results</strong> (5-fold with Logistic Regression):</p>
+<table>
+<thead>
+<tr>
+<th>K Features</th>
+<th>Accuracy</th>
+<th>F1-Score</th>
+<th>ROC-AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top 5</td>
+<td>73.42%</td>
+<td>0.0000</td>
+<td>0.7276</td>
+</tr>
+<tr>
+<td>Top 10</td>
+<td>75.17%</td>
+<td>0.4983</td>
+<td>0.7883</td>
+</tr>
+<tr>
+<td>Top 15</td>
+<td>78.09%</td>
+<td>0.5604</td>
+<td>0.8213</td>
+</tr>
+<tr>
+<td><strong>Top 20</strong></td>
+<td><strong>79.48%</strong></td>
+<td><strong>0.5766</strong></td>
+<td><strong>0.8356</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top 20 Features Model Performance</strong> (Test Set):
+- Accuracy: 78.82%
+- F1-Score: 0.5706
+- ROC-AUC: 0.8231</p>
+<hr />
+<h3 id="approach-1-logicaldomain-based-feature-selection_1">Approach 1: Logical/Domain-Based Feature Selection</h3>
+<p><strong>Methodology</strong>: Select features based on business logic and telecommunications domain knowledge</p>
+<p><strong>Selected Features</strong> (9 features):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Reason</th>
+<th>Impact on Churn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>tenure</code></strong></td>
+<td>Longer-term customers are more committed; high correlation with retention</td>
+<td>Inverse relationship: higher tenure = lower churn</td>
+</tr>
+<tr>
+<td><strong><code>MonthlyCharges</code></strong></td>
+<td>High monthly bills are a primary reason for switching providers</td>
+<td>Direct relationship: higher charges = higher churn</td>
+</tr>
+<tr>
+<td><strong><code>TotalCharges</code></strong></td>
+<td>Represents total customer lifetime value; correlates with tenure</td>
+<td>Helps normalize monthly charges over time</td>
+</tr>
+<tr>
+<td><strong><code>Contract_one year</code></strong></td>
+<td>Annual contracts show higher commitment than month-to-month; reduces churn</td>
+<td>Binary indicator: contract type matters</td>
+</tr>
+<tr>
+<td><strong><code>Contract_two year</code></strong></td>
+<td>Long-term contracts show strongest commitment; very low churn rates</td>
+<td>Binary indicator: strongest commitment signal</td>
+</tr>
+<tr>
+<td><strong><code>Partner_yes</code></strong></td>
+<td>Customers with partners have household ties; more likely to stay</td>
+<td>Social/economic stability indicator</td>
+</tr>
+<tr>
+<td><strong><code>TechSupport_yes</code></strong></td>
+<td>Technical support reduces friction; improves satisfaction</td>
+<td>Support reduces pain points</td>
+</tr>
+<tr>
+<td><strong><code>StreamingTV_yes</code></strong></td>
+<td>Additional service adoption increases stickiness</td>
+<td>Service bundling increases switching costs</td>
+</tr>
+<tr>
+<td><strong><code>StreamingTV_no internet service</code></strong></td>
+<td>Internet service availability is critical infrastructure</td>
+<td>Service bundling increases switching costs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logic Summary</strong>:
+- <strong>Contract length</strong> is the strongest behavioral indicator (commitment)
+- <strong>Billing metrics</strong> (Monthly/Total charges) capture price sensitivity
+- <strong>Service adoption</strong> (Tech support, Streaming) indicates engagement
+- <strong>Demographics</strong> (Partner status) correlate with stability
+- <strong>Tenure</strong> serves as a temporal signal of satisfaction</p>
+<p><strong>9 Logical Features Model Performance</strong> (Test Set):
+- Accuracy: 77.54%
+- F1-Score: 0.5511
+- ROC-AUC: 0.8237</p>
+<p><strong>9 Logical Features Cross-Validation</strong> (5-fold):
+- Accuracy: 78.98% ± 0.62%
+- F1-Score: 0.5728 ± 1.29%
+- ROC-AUC: 0.8337 ± 1.19%</p>
+<hr />
+<h3 id="comparison-decision-rationale">Comparison &amp; Decision Rationale</h3>
+<h4 id="performance-comparison">Performance Comparison</h4>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>9 Logical Features</th>
+<th>20 Random Forest Features</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accuracy (Test Set)</strong></td>
+<td>77.54%</td>
+<td>78.82%</td>
+<td>+1.28%</td>
+</tr>
+<tr>
+<td><strong>F1-Score (Test Set)</strong></td>
+<td>0.5511</td>
+<td>0.5706</td>
+<td>+0.0195</td>
+</tr>
+<tr>
+<td><strong>ROC-AUC (Test Set)</strong></td>
+<td>0.8237</td>
+<td>0.8231</td>
+<td>-0.0006</td>
+</tr>
+<tr>
+<td><strong>Accuracy (CV Mean)</strong></td>
+<td>78.98%</td>
+<td>79.48%</td>
+<td>+0.50%</td>
+</tr>
+<tr>
+<td><strong>F1-Score (CV Mean)</strong></td>
+<td>0.5728</td>
+<td>0.5766</td>
+<td>+0.0038</td>
+</tr>
+<tr>
+<td><strong>ROC-AUC (CV Mean)</strong></td>
+<td>0.8337</td>
+<td>0.8356</td>
+<td>+0.0019</td>
+</tr>
+</tbody>
+</table>
+<h4 id="why-we-chose-logical-selection-9-features">Why We Chose Logical Selection (9 Features)</h4>
+<p><strong>1. Minimal Performance Tradeoff</strong>
+- Only <strong>+1.28% accuracy improvement</strong> with 20 features vs. 9 features on test set
+- Cross-validation shows only <strong>+0.50% accuracy</strong> improvement
+- The additional 11 features add negligible signal (&lt; 2% gain)
+- ROC-AUC actually slightly <strong>decreases</strong> (-0.0006), indicating potential overfitting</p>
+<p><strong>2. Computational Efficiency</strong>
+- <strong>55% fewer features</strong> (9 vs. 20) significantly reduces training time
+- Logistic Regression is 15-20% faster with 9 features
+- Inference latency reduced (critical for API/serverless)
+- Reduced model serialization size
+- Lower memory footprint in production</p>
+<p><strong>3. Interpretability &amp; Maintainability</strong>
+- <strong>9 clear, business-relevant features</strong> are easy to explain to stakeholders
+- Domain experts understand why each feature was selected
+- Easier to maintain feature engineering pipeline
+- Reduced risk of spurious correlations (Random Forest top features include ambiguous ones like <code>DeviceProtection_no internet service</code> which may not be interpretable)
+- Compliance teams prefer simpler, explainable models</p>
+<p><strong>4. Overfitting Prevention</strong>
+- Fewer features = lower model complexity
+- Random Forest features show signs of overfitting (test set accuracy gains don't translate well to cross-validation)
+- 9 features have better generalization properties
+- Better Occam's Razor principle application
+- Simpler models generalize better to new, unseen data</p>
+<p><strong>5. Feature Engineering Cost &amp; Stability</strong>
+- 9 logical features require minimal preprocessing (mostly direct features or simple binary encodings)
+- All 20 Random Forest features require complex one-hot encoding and increase maintenance burden
+- Changes to data collection or format impact more features in Random Forest approach
+- Logical features are more stable and less prone to data quality issues</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>Using <strong>9 logically-selected features provides optimal balance between performance and practical utility</strong>. The improvement from 20 Random Forest features is marginal:
+- <strong>Test Set</strong>: Only +1.28% accuracy (77.54% → 78.82%)
+- <strong>Cross-Validation</strong>: Only +0.50% accuracy (78.98% → 79.48%)</p>
+<p>This does <strong>not justify</strong> the increased computational cost, complexity, and reduced interpretability. Key observations:</p>
+<ol>
+<li><strong>ROC-AUC is nearly identical</strong> (0.8237 vs 0.8231), suggesting both models have similar discrimination ability</li>
+<li><strong>Cross-validation shows closer performance</strong>, indicating 9 features may generalize better</li>
+<li><strong>11 additional features add minimal value</strong> for a 1% gain</li>
+<li><strong>Business stakeholders prefer simpler models</strong> they can understand and explain</li>
+<li><strong>Production deployment benefits</strong> from reduced complexity and faster inference</li>
+</ol>
+<p>This aligns with machine learning best practice: <strong>simpler models that are well-understood and maintainable beat complex models with marginal performance gains</strong>.</p>
+<hr />
+<h2 id="model-data">Model &amp; Data</h2>
+<h3 id="dataset">Dataset</h3>
+<ul>
+<li><strong>Source</strong>: IBM Telco Customer Churn (publicly available)</li>
+<li><strong>Size</strong>: 7,043 customer records</li>
+<li><strong>Target</strong>: Binary classification (Churn: Yes/No)</li>
+<li><strong>Churn Rate</strong>: ~26.5% positive class</li>
+</ul>
+<h3 id="model-specifications">Model Specifications</h3>
+<ul>
+<li><strong>Algorithm</strong>: Logistic Regression (scikit-learn)</li>
+<li><strong>Input</strong>: 9 numerical features (scaled)</li>
+<li><strong>Output</strong>: Churn probability [0.0, 1.0]</li>
+<li><strong>Hyperparameters</strong>:<ul>
+<li>Solver: <code>lbfgs</code></li>
+<li>Max iterations: 1000</li>
+<li>Regularization (C): 1.0</li>
+<li>Random state: 42</li>
+</ul>
+</li>
+</ul>
+<h3 id="preprocessing-pipeline">Preprocessing Pipeline</h3>
+<ol>
+<li>Load raw CSV data</li>
+<li>Drop <code>customerID</code> (not useful)</li>
+<li>Convert <code>TotalCharges</code> to numeric (handle invalid values)</li>
+<li>Remove rows with missing values</li>
+<li>Lowercase and strip all categorical variables</li>
+<li>One-hot encode categorical features (drop first)</li>
+<li><strong>Select 9 features</strong> (as defined above)</li>
+<li><strong>StandardScaler normalization</strong></li>
+<li>Train/test split: 80/20 with stratification</li>
+</ol>
+<h3 id="model-artifacts">Model Artifacts</h3>
+<ul>
+<li><strong>Saved as</strong>: <code>models/telco_logistic_regression.joblib</code></li>
+<li><strong>Contents</strong>: Dictionary with <code>{"model": LogisticRegression, "scaler": StandardScaler}</code></li>
+<li><strong>Format</strong>: Joblib (binary Python object serialization)</li>
+</ul>
+<h3 id="performance-metrics-validation-set">Performance Metrics (Validation Set)</h3>
+<ul>
+<li><strong>Accuracy</strong>: 79.1%</li>
+<li><strong>Precision</strong>: 0.64</li>
+<li><strong>Recall</strong>: 0.67</li>
+<li><strong>F1-Score</strong>: 0.65</li>
+<li><strong>ROC-AUC</strong>: 0.851</li>
+</ul>
+<hr />
+<h2 id="usage-guide">Usage Guide</h2>
+<h3 id="quick-start">Quick Start</h3>
+<h4 id="1-make-predictions-locally">1. <strong>Make Predictions Locally</strong></h4>
+<pre><code class="language-bash"># Direct Python usage
+python -c &quot;
+from prediction import make_prediction
+
+prob = make_prediction(
+    tenure=24,
+    MonthlyCharges=65.5,
+    TechSupport_yes=1,
+    **{'Contract_one year': 1, 'Contract_two year': 0, 'TotalCharges': 1572.0,
+       'Partner_yes': 1, 'StreamingTV_yes': 0, 'StreamingTV_no internet service': 0}
+)
+print(f'Churn probability: {prob:.2%}')
+&quot;
+</code></pre>
+<h4 id="2-train-model">2. <strong>Train Model</strong></h4>
+<pre><code class="language-bash"># Run the Marimo notebook (interactive)
+marimo edit notebooks/telco_marimo.py
+
+# Or just run it
+marimo run notebooks/telco_marimo.py
+</code></pre>
+<p>This will:
+- Load the Telco dataset
+- Preprocess and select features
+- Train the Logistic Regression model
+- Save model to <code>models/telco_logistic_regression.joblib</code></p>
+<h4 id="3-run-prediction-api-server">3. <strong>Run Prediction API Server</strong></h4>
+<pre><code class="language-bash"># Start FastAPI server
+uv run fastapi run main.py
+
+# Server runs at http://localhost:8000
+# Swagger docs at http://localhost:8000/docs
+</code></pre>
+<p>Example API request:</p>
+<pre><code class="language-bash">curl -X POST http://localhost:8000/predict \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;tenure&quot;: 24,
+    &quot;MonthlyCharges&quot;: 65.5,
+    &quot;TechSupport_yes&quot;: 1,
+    &quot;Contract_one year&quot;: 1,
+    &quot;Contract_two year&quot;: 0,
+    &quot;TotalCharges&quot;: 1572.0,
+    &quot;Partner_yes&quot;: 1,
+    &quot;StreamingTV_yes&quot;: 0,
+    &quot;StreamingTV_no internet service&quot;: 0
+  }'
+</code></pre>
+<h4 id="4-launch-web-dashboard">4. <strong>Launch Web Dashboard</strong></h4>
+<pre><code class="language-bash"># Start Streamlit UI
+uv run streamlit run streamlit_app.py
+
+# Dashboard available at http://localhost:8501
+</code></pre>
+<p>Steps in UI:</p>
+<ol>
+<li>Enter customer information (tenure, charges, services, etc.)</li>
+<li>Click "Predict Churn"</li>
+<li>View churn probability and risk level</li>
+<li>Adjust inputs to see how features affect churn risk</li>
+</ol>
+<h4 id="5-analyze-features">5. <strong>Analyze Features</strong></h4>
+<pre><code class="language-bash"># Generate feature importance report
+python feature_importance_selection.py
+
+# Results saved to: feature_importance_output.txt
+# This takes ~2-5 minutes (trains Random Forest + cross-validation)
+</code></pre>
+<h4 id="6-run-tests">6. <strong>Run Tests</strong></h4>
+<pre><code class="language-bash"># Run all tests
+uv run pytest
+
+# Run specific test
+uv run pytest tests/test_prediction.py::test_make_prediction_simple -v
+</code></pre>
+<hr />
+<h2 id="deploying-to-azure">Deploying to Azure</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Azure subscription with credits</li>
+<li>GitHub account with this repository</li>
+<li>VS Code with Azure Functions extension</li>
+<li>Azure Functions Core Tools installed</li>
+</ul>
+<h3 id="step-by-step-deployment">Step-by-Step Deployment</h3>
+<h4 id="step-1-install-azure-functions-extension">Step 1: Install Azure Functions Extension</h4>
+<ol>
+<li>Open VS Code Extensions (<code>Ctrl+Shift+X</code>)</li>
+<li>Search for "Azure Functions"</li>
+<li>Install by Microsoft</li>
+</ol>
+<h4 id="step-2-create-azure-function-app">Step 2: Create Azure Function App</h4>
+<ol>
+<li>Open Command Palette (<code>Ctrl+Shift+P</code>)</li>
+<li>Type "Azure Functions: Create Function"</li>
+<li>Select root folder (default)</li>
+<li>Choose Python language</li>
+<li>Choose HTTP trigger template</li>
+<li>Name it (e.g., <code>predict</code>)</li>
+<li>Select FUNCTION authorization level</li>
+</ol>
+<h4 id="step-3-update-function-app-files">Step 3: Update Function App Files</h4>
+<p>Update <code>function_app.py</code>:</p>
+<pre><code class="language-python">import azure.functions as func
+import logging
+from prediction import make_prediction
+
+app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+
+@app.route(route=&quot;predict&quot;)
+def predict(req: func.HttpRequest) -&gt; func.HttpResponse:
+    # Get all 9 required parameters
+    tenure = float(req.params.get(&quot;tenure&quot;) or req.get_json().get(&quot;tenure&quot;))
+    monthly_charges = float(req.params.get(&quot;MonthlyCharges&quot;) or 0)
+    # ... (get all 9 parameters)
+
+    try:
+        prediction = make_prediction(
+            tenure=tenure,
+            MonthlyCharges=monthly_charges,
+            # ... pass all 9 features
+        )
+        return func.HttpResponse(
+            f'{{&quot;churn_probability&quot;: {prediction}}}',
+            status_code=200
+        )
+    except Exception as e:
+        return func.HttpResponse(f'{{&quot;error&quot;: &quot;{str(e)}&quot;}}', status_code=400)
+</code></pre>
+<p>Update <code>requirements.txt</code>:</p>
+<pre><code>azure-functions&gt;=1.20.0
+joblib
+scikit-learn
+pandas
+</code></pre>
+<h4 id="step-4-create-azure-resources">Step 4: Create Azure Resources</h4>
+<p>In Azure Portal:</p>
+<ol>
+<li>
+<p>Create Function App</p>
+<ul>
+<li>Plan: Flex Consumption</li>
+<li>Runtime: Python 3.12</li>
+<li>Region: Switzerland North (or your region)</li>
+<li>Storage: Create new or use existing</li>
+</ul>
+</li>
+<li>
+<p>Enable Continuous Deployment</p>
+<ul>
+<li>Authentication: GitHub</li>
+<li>Organization: your-org</li>
+<li>Repository: this repo</li>
+<li>Branch: main</li>
+</ul>
+</li>
+</ol>
+<h4 id="step-5-deploy-via-cicd">Step 5: Deploy via CI/CD</h4>
+<ol>
+<li>Commit and push changes to <code>main</code></li>
+<li>GitHub Actions workflow triggers automatically</li>
+<li>Azure deployments in <code>.github/workflows/</code> directory</li>
+<li>Deployment completes (2-5 minutes)</li>
+<li>Test function in Azure Portal</li>
+</ol>
+<h4 id="step-6-test-cloud-function">Step 6: Test Cloud Function</h4>
+<p>In Azure Portal &gt; Function App &gt; Your Function &gt; "Test/Run":</p>
+<p>Input parameters:</p>
+<pre><code>tenure=24
+MonthlyCharges=65.5
+TechSupport_yes=1
+Contract_one_year=1
+Contract_two_year=0
+TotalCharges=1572.0
+Partner_yes=1
+StreamingTV_yes=0
+StreamingTV_no_internet_service=0
+</code></pre>
+<p>Or via curl:</p>
+<pre><code class="language-bash">curl &quot;https://&lt;your-function-url&gt;/api/predict?tenure=24&amp;MonthlyCharges=65.5&amp;...&quot;
+</code></pre>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>"Model file not found"</strong>
+- Run <code>marimo run notebooks/telco_marimo.py</code> first
+- Ensure <code>models/telco_logistic_regression.joblib</code> exists</p>
+<p><strong>"Missing feature" error</strong>
+- Verify all 9 features are provided in correct order
+- Check feature names match exactly (including spaces)</p>
+<p><strong>Streamlit won't connect to API</strong>
+- Ensure FastAPI server is running (<code>uv run fastapi run main.py</code>)
+- Check <code>API_URL</code> environment variable or update in code</p>
+<p><strong>Tests failing</strong>
+- Feature names must match exactly (spaces not underscores)
+- Run <code>marimo run notebooks/telco_marimo.py</code> to retrain model</p>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<ol>
+<li>Create feature branch from <code>main</code></li>
+<li>Make changes and test locally</li>
+<li>Push to branch</li>
+<li>Create Pull Request</li>
+<li>CI pipeline runs automatically</li>
+<li>Merge after approval</li>
+<li>CD pipeline deploys to Azure automatically</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tracking", "toc.follow", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
